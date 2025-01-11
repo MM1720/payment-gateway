@@ -19,6 +19,7 @@ router.post("/create-order", async (req, res) => {
       currency: "INR",
     };
     const order = await razorpay.orders.create(options);
+    order.msg = "Order created successfully!";
     res.status(200).json({ success: true, order });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });

@@ -1,13 +1,12 @@
 import React from "react";
-import axios from "../services/api";
+import axios from "../services/api.js";
 
 const CheckoutButton = ({ amount }) => {
   const handlePayment = async () => {
     try {
       const { data } = await axios.post("/api/create-order", { amount });
-
       const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_your_key_id",
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: data.order.amount,
         currency: data.order.currency,
         order_id: data.order.id,
